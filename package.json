@@ -1,0 +1,13 @@
+{
+  "name": "tiktok-live-gift-reader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node server.mjs" },
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "ws": "^8.18.0"
+  }
+}

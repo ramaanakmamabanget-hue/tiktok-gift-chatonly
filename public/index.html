@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TikTok LIVE Gift-Only Chat Reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="bar">
+  <div class="top"><div class="brand"><span class="logo">◐</span><div><h1>Gift-Only Chat Reader</h1><p>TikTok LIVE • gifters only</p></div></div>
+    <div class="tright"><span id="status" class="status off"><b></b><em>DISCONNECTED</em></span>
+      <button type="button" id="tgear" class="tgear" aria-expanded="false" aria-controls="tpanel" title="Test effects"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
+    <div id="tpanel" class="tpanel" hidden role="dialog" aria-label="Test effect">
+      <div class="th"><b>Test Effect</b><button type="button" id="tclose" class="x" aria-label="Close">✕</button></div>
+      <label class="f"><span>Jumlah Coin</span><input id="tcoins" type="number" min="1" step="1" value="100"></label>
+      <div class="chips"><button type="button" class="chip" data-c="10">10</button><button type="button" class="chip" data-c="50">50</button><button type="button" class="chip" data-c="100">100</button><button type="button" class="chip" data-c="500">500</button><button type="button" class="chip" data-c="1000">1000</button><button type="button" class="chip" data-c="2000">2000</button></div>
+      <label class="chk"><input id="tsame" type="checkbox"><i></i>Tambah ke kartu terakhir (update)</label>
+      <button type="button" id="trun" class="btn primary">TEST</button>
+      <p class="hint">Fake user, hanya untuk tes efek.</p>
+    </div></div>
+  <div class="row">
+    <label class="f grow"><span>Euler Key</span><input id="key" type="password" autocomplete="off" spellcheck="false" placeholder="euler_..."></label>
+    <label class="f grow"><span>TikTok LIVE Username</span><input id="user" type="text" autocomplete="off" spellcheck="false" placeholder="@username"></label>
+    <label class="f min"><span>Minimum Coins</span><input id="min" type="number" min="0" step="1" value="5"></label>
+  </div>
+  <div class="row mid">
+    <button id="save" class="btn">SAVE</button>
+    <button id="connect" class="btn primary">CONNECT</button>
+    <button id="reset" class="btn danger">RESET ALL</button>
+    <label class="chk"><input id="auto" type="checkbox"><i></i>Auto Save</label>
+  </div>
+  <div class="stats">
+    <div class="stat coins"><span>Total Coins</span><b id="coinN">0</b></div>
+    <div class="stat"><span>Session</span><b id="timer" class="idle">00:00:00</b></div>
+    <div class="stat"><span>Cards</span><b id="cardN">0</b></div>
+  </div>
+</header>
+<div class="tools">
+  <div class="seg" id="sort" role="group" aria-label="Sort">
+    <button type="button" data-s="new">Newest</button>
+    <button type="button" data-s="old" class="on">Oldest</button>
+    <button type="button" data-s="coin">Top coins</button>
+  </div>
+  <label class="gsel"><span>Gift</span><select id="gfilter"><option value="">All gifts</option></select></label>
+  <button type="button" id="snd" class="tbtn" aria-pressed="true" title="Cha-ching sound">🔊 Sound</button>
+  <span class="shown" id="shown"></span>
+</div>
+<section id="dock" class="dock" hidden aria-label="Pinned"></section>
+<main id="list" class="list"><div class="empty" id="empty">Waiting for gifts… only gifts ≥ Minimum Coins will appear.</div><div class="empty" id="nomatch" style="display:none">No cards match this gift.</div></main>
+<button type="button" id="newbtn" class="newbtn" hidden></button>
+<canvas id="fx"></canvas><div id="flash" class="flash"></div><div id="banner" class="banner"></div>
+<div id="toasts" class="toasts"></div>
+<div id="modal" class="modal hidden"><div class="box">
+  <p>Reset all users and chats?</p>
+  <div class="acts"><button id="no" class="btn">NO</button><button id="yes" class="btn danger">YES, RESET</button></div>
+</div></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
